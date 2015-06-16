@@ -10,16 +10,16 @@ public class Calculator {
 		Calculator calculator = new Calculator();
 		int sum = 0;
 		
-		//for문
+		// for문
 		for (int i = 1; i <= 100; i++) 
 			sum+=i;
 		calculator.printSum("포문 : ", sum);
 		
-		//람다
+		// 람다
 		sum = IntStream.range(1, 101).sum();
 		calculator.printSum("람다 :", sum);
 		
-		//재귀함수
+		// 재귀함수
 		sum = calculator.sum(100);
 		calculator.printSum("재귀함수 :", sum);
 		
@@ -28,12 +28,12 @@ public class Calculator {
 		calculator.printSum("리스트추가 :", sum);
 	}
 
-	//재귀함수에 쓰인 sum
+	// 재귀함수에 쓰인 sum
 	private int sum(int i){
 		return (i==1) ? 1 : sum(i-1)+i;
 	}
 
-	 /*	 IntStream 레인지같이 시도를해볼까?! 전역변수로 list를 뺄까말까 고민을 했었다.
+	 /* IntStream 레인지같이 시도를해볼까?! 전역변수로 list를 뺄까말까 고민을 했었다.
 	 range초기에는 Arraylist선언후 i부터 넣고  
 	 subRange를 돌려 i를 늘려가면서 j까지 더함 */
 	private List<Integer> range(int min, int max){
