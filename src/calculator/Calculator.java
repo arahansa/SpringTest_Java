@@ -36,26 +36,22 @@ public class Calculator {
 	 /*	 IntStream 레인지같이 시도를해볼까?! 전역변수로 list를 뺄까말까 고민을 했었다.
 	 range초기에는 Arraylist선언후 i부터 넣고  
 	 subRange를 돌려 i를 늘려가면서 j까지 더함 */
-	private List<Integer> range(int i, int j){
+	private List<Integer> range(int min, int max){
 		List<Integer> list = new ArrayList<Integer>();
-		list.add(i);
-		return (i==j) ? list : subRange(list, ++i, j);
+		return subRange(list, min, max);
 	}
-	private List<Integer> subRange(List<Integer> list, int i, int j){
-		list.add(i);
-		return (i==j) ? list : subRange(list, ++i, j);
+	private List<Integer> subRange(List<Integer> list, int min, int max){
+		list.add(min);
+		return (min==max) ? list : subRange(list, ++min, max);
 	}
 	
 	// IntStream sum 같이? 체인연결하고싶지만 욕심같다. 파라미터로 연결!ㅠ
 	private int sum(List<Integer> list){
-		return sum(list, 0 , list.size()-1); 	
+		return subSum(list, 0 , list.size()-1); 	
 	}
-	private int sum(List<Integer> list, int i, int maximum) {
-		if(i==maximum){
-			return list.get(maximum);
-		}else{
-			return list.get(i)+sum(list, ++i, maximum);
-		}
+	private int subSum(List<Integer> list, int i, int max) {
+		int currentNum=list.get(i);
+		return (i==max) ? currentNum : currentNum+subSum(list, ++i, max);
 	}
 
 	private  void printSum(String msg , int sum) {
