@@ -40,9 +40,9 @@ public class Calculator {
 		List<Integer> list = new ArrayList<Integer>();
 		return subRange(list, min, max);
 	}
-	private List<Integer> subRange(List<Integer> list, int min, int max){
-		list.add(min);
-		return (min==max) ? list : subRange(list, ++min, max);
+	private List<Integer> subRange(List<Integer> list, int currentNum, int max){
+		list.add(currentNum);
+		return (currentNum==max) ? list : subRange(list, ++currentNum, max);
 	}
 	
 	// IntStream sum 같이? 체인연결하고싶지만 욕심같다. 파라미터로 연결!ㅠ
