@@ -20,7 +20,7 @@ public class Calculator {
 		calculator.printSum("람다 :", sum);
 		
 		// 재귀함수
-		sum = calculator.sum(100);
+		sum = calculator.sum(1, 100);
 		calculator.printSum("재귀함수 :", sum);
 		
 		// ArrayList
@@ -29,8 +29,8 @@ public class Calculator {
 	}
 
 	// 재귀함수에 쓰인 sum
-	private int sum(int i){
-		return (i==1) ? 1 : sum(i-1)+i;
+	private int sum(int min, int max){
+		return (min==max) ? max : min+sum(++min, max);
 	}
 
 	 /* IntStream 레인지같이 시도를해볼까?! 전역변수로 list를 뺄까말까 고민을 했었다.
