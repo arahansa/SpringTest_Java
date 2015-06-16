@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Calculator {
-
-	private static final int numSize = 100;
 	
 	public static void main(String[] args) {
 		int sum = 0;
