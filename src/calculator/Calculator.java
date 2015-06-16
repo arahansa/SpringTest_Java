@@ -7,6 +7,6 @@ public class Calculator {
 		for (int i = 1; i <= 100; i++) {
 			sum+=i;
 		}
-		System.out.println("1ºÎÅÍ 100±îÁöÀÇ ÇÕÀº : " +sum);
+		System.out.println("1ë¶€í„° 100ê¹Œì§€ì˜ í•© : " +sum);
 	}
 }
