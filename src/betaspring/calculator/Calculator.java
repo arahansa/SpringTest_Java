@@ -1,4 +1,4 @@
-package calculator;
+package betaspring.calculator;
 
 import java.util.ArrayList;
 import java.util.List;
