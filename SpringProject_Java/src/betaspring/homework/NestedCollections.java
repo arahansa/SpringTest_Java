@@ -19,7 +19,7 @@ public class NestedCollections extends JFrame implements ActionListener{
 	// 1번 2번 해당, 접근될 외부변수들 겸 Set, List 초기화
 	List<String> list = Arrays.asList(new String[] { "교촌", "네네", "교촌", "통큰", "호식이두마리",
 			"굽네", "호식이두마리" });
-	Set<Integer> setLotto  = new TreeSet<Integer>(Arrays.asList(new Integer[]{1,2,3,5,8,10}));
+	Set<Integer> setLotto  = new TreeSet<>(Arrays.asList(new Integer[]{1,2,3,5,8,10}));
 	//외부 변수 확인할 것들
 	private static String message = "저는 네스티드용 메시지입니다^^";
 	private String msgInner = "저는 inner용 메시지입니다^^";
@@ -35,11 +35,6 @@ public class NestedCollections extends JFrame implements ActionListener{
 			System.out.println("받은 메시지 :"+ msg);
 			// 3-5. 변수접근. 인스턴스되야쓸 수 있는 msgInner는 static nested에서는 못 쓴다.
 			// System.out.println(msgInner);
-			
-			
-			
-			
-			
 		}
 	}
 
@@ -59,7 +54,7 @@ public class NestedCollections extends JFrame implements ActionListener{
 		class LocalPanel extends JPanel {
 			LocalPanel(ActionListener listener) {
 				setBackground(Color.black);
-				JButton btn = new JButton("Outer Class 메시지 출력!");
+				JButton btn = new JButton("Outer Class 메시지 출력(console)!");
 				// 3 -4 anonymous class 
 				// 외부 변수에 접근함.
 				btn.addActionListener(new ActionListener() {
@@ -72,7 +67,7 @@ public class NestedCollections extends JFrame implements ActionListener{
 				add(btn);
 
 				// 3 -5 lambda expression
-				JButton btn2 = new JButton("익명클래스로 외부 치킨변수 출력!");
+				JButton btn2 = new JButton("익명클래스로 외부 치킨변수 출력!(console)");
 				btn2.addActionListener(e -> System.out.println(list));
 				add(btn2);
 				
@@ -88,7 +83,8 @@ public class NestedCollections extends JFrame implements ActionListener{
 		
 		
 		JPanel panel = new LocalPanel(this);
-		add(panel, BorderLayout.SOUTH);
+		JPanel panelNorth = new JPanel();
+		panelNorth.setLayout(new GridLayout(1, 3));
 		// 3-6.메소드 1개짜리 해보기. local class
 		JButton btnNorth = new JButton("메소드1개짜리 구현:Local");
 		btnNorth.addActionListener(new ActionListener() {
@@ -108,7 +104,7 @@ public class NestedCollections extends JFrame implements ActionListener{
 				one.showMsg("저는 메소드 1개짜리 로컬입니다^^");
 			}
 		});
-		add(btnNorth, BorderLayout.NORTH);
+		panelNorth.add(btnNorth);
 		// 3-6. 메소드1개짜리. anonymous class
 		JButton btnNorthAnon = new JButton("메소드1개:익명");
 		btnNorthAnon.addActionListener(e->{
@@ -118,19 +114,30 @@ public class NestedCollections extends JFrame implements ActionListener{
 				{
 					jta.setText("");
 					jta.append(msg);
-					
 				}
 			};
 			one.showMsg("저는 메소드 1개 익명입니다^^");
 		});
-		add(btnNorthAnon, BorderLayout.NORTH);
-		
-		
+		panelNorth.add(btnNorthAnon);
+		// 3-6. 메소드 1개짜리. 람다
+		JButton btnLambda = new JButton("메소드 1개:람다");
+		btnLambda.addActionListener(e->{
+			OnemethodInterface one = msg -> {
+                jta.setText("");
+                jta.append(msg);
+            };
+			one.showMsg("저는 메소드 1개 람다입니다^^");
+		});
+		panelNorth.add(btnLambda);
+
+
+		add(panelNorth, BorderLayout.NORTH);
+		add(panel, BorderLayout.SOUTH);
 		add(jta, BorderLayout.CENTER);
 		
 		// config Frame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(400, 300, 400, 300);
+		setBounds(400, 300, 800, 300);
 		setVisible(true);
 	}
 
